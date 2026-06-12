@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beyond Git: Why Machine Learning Artifacts are Critical for Reproducibility</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner container">
+      <a href="../index.html" class="brand">
+        <div class="brand-mark"><span>FT</span></div>
+        <div class="brand-text">Fatema Tabassum</div>
+      </a>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container post-layout">
+        <div class="glass">
+          <div class="pill"><span class="dot"></span> Blog Post</div>
+          <h1>Beyond Git: Why Machine Learning Artifacts are Critical for Reproducibility</h1>
+          <p class="lead">
+            Why saving model artifacts is essential for reproducible and recoverable ML workflows
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container post-layout">
+        <article class="post-card glass">
+          <span class="post-meta">By Fatema Tabassum &nbsp;·&nbsp; June 2026</span>
+
+          <p>
+            Imagine you are a data scientist who spent weeks training a model that achieves 99% accuracy
+            on a binary classification problem. You celebrate, close your laptop — and then realize you
+            never saved the model. The weights are gone. You cannot reproduce the result, share it with
+            your team, or deploy it to production. This is not a hypothetical horror story; it happens
+            regularly in ML projects that rely only on code versioning.
+          </p>
+
+          <p>
+            This is where <strong>ML artifacts</strong> come in. Unlike source code, which describes
+            <em>how</em> a model is built, artifacts are the concrete outputs produced during training
+            and evaluation — the files you need to actually use, reproduce, or audit a model run.
+          </p>
+
+          <h2>Why Standard Code Versioning (Like Git) Isn't Enough for Machine Learning</h2>
+          <p>
+            Git tracks changes to source code, but it does not track the outputs of running that code.
+            Two runs of the exact same training script can produce different models if the random seed,
+            dataset version, or environment differs. Git has no record of any of that. Artifacts capture
+            the state of a specific experiment — code plus data plus configuration plus results — making
+            a run fully reproducible and auditable.
+          </p>
+
+          <h3>Key Examples of ML Artifacts</h3>
+          <ul>
+            <li><strong>Model Weights &amp; Binaries</strong> — The finalized mathematical representations
+            of the learned model (e.g., <code>.pkl</code>, <code>.h5</code>, <code>.pt</code>, or
+            <code>.safetensors</code> files) that can be loaded to make predictions.</li>
+            <li><strong>Evaluation Metrics</strong> — Stored logs or JSON files detailing accuracy,
+            precision, recall, F1 score, loss, and other performance indicators.</li>
+            <li><strong>Visualizations</strong> — Graphs generated during training or testing, such as
+            ROC curves, confusion matrices, or loss plots.</li>
+            <li><strong>Hyperparameters</strong> — The exact settings and configurations used for a
+            specific training run (e.g., learning rate, batch size, number of epochs).</li>
+            <li><strong>Data Snapshots</strong> — The specific versions of datasets processed and used
+            for a particular experiment, ensuring data reproducibility.</li>
+          </ul>
+
+          <p>
+            To organize, version, and share these files effectively, data scientists and ML engineers
+            rely on experiment tracking tools. Popular options include
+            <strong>Weights &amp; Biases (W&amp;B)</strong>, <strong>MLflow</strong>, and
+            <strong>DVC (Data Version Control)</strong>.
+          </p>
+
+          <h3>Sources</h3>
+          <p>
+            <a class="source-link" href="https://mlflow.org/docs/latest/tracking.html" target="_blank">
+              MLflow: Tracking Experiments and Artifacts
+            </a>
+          </p>
+
+          <div class="post-nav">
+            <a href="../blog.html">← Back to Blog</a>
+            <a href="../index.html">Return to Portfolio ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-panel glass">
+      <div>© 2026 Fatema Tabassum &nbsp;·&nbsp; Blog Post</div>
+      <div>Thoughtful technical writing, one post at a time</div>
+    </div>
+  </footer>
+</body>
+</html>
