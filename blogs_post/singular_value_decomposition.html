@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Singular Value Decomposition (SVD) - Fatema Tabassum</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/input/mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner container">
+      <a href="../index.html" class="brand">
+        <div class="brand-mark"><span>FT</span></div>
+        <div class="brand-text">Fatema Tabassum</div>
+      </a>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container post-layout">
+        <div class="glass">
+          <div class="pill"><span class="dot"></span> Blog Post</div>
+          <h1>Singular Value Decomposition (SVD) এর সহজ পাঠ</h1>
+          <p class="lead">
+            লিনিয়ার অ্যালজেব্রার একটি শক্তিশালী কনসেপ্ট এবং বাস্তব জীবনে এর কোডিং প্রয়োগ
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container post-layout">
+        <article class="post-card glass">
+          <span class="post-meta">By Fatema Tabassum &nbsp;·&nbsp; June 2026</span>
+
+          <p>
+            <strong>Singular Value Decomposition (SVD)</strong> হলো লিনিয়ার অ্যালজেব্রার (Linear Algebra) অত্যন্ত শক্তিশালী এবং চমৎকার একটি কনসেপ্ট। সহজ ভাষায় বললে, এটি যেকোনো একটি ম্যাট্রিক্সকে ভেঙে তিনটি বিশেষ ম্যাট্রিক্সের গুণফল আকারে প্রকাশ করে।
+          </p>
+
+          <p>
+            বাস্তব জীবনের একটি উদাহরণ দিলে বিষয়টি সহজে বুঝতে পারবেন: মনে করুন আপনি একটি জটিল মিউজিক ট্র্যাক থেকে ভোকাল (কণ্ঠস্বর), ড্রামস এবং গিটারের শব্দ আলাদা করতে চান। SVD ঠিক এই কাজটিই করে—একটি জটিল ডেটা ম্যাট্রিক্সকে তার মূল উপাদান বা ফীচারে টুকরো টুকরো করে ফেলে।
+          </p>
+
+          <h2>🛑 SVD এর মূল সূত্র (The Formula)</h2>
+          <p>
+            গাণিতিকভাবে, যেকোনো একটি \(m \times n\) সাইজের ম্যাট্রিক্স \(A\)-কে আমরা এভাবে লিখতে পারি:
+          </p>
+          
+          <div style="text-align: center; margin: 20px 0; font-size: 1.2rem;">
+            \[A = U \Sigma V^T\]
+          </div>
+
+          <p>এখানে ম্যাট্রিক্স তিনটি নিচে ব্যাখ্যা করা হলো:</p>
+          <ul>
+            <li><strong>\(U\) (Left Singular Vectors):</strong> এটি একটি \(m \times m\) অর্থোগোনাল (Orthogonal) ম্যাট্রিক্স। এটি মূলত ডেটার রো (Row) বা অবজেক্টগুলোর মধ্যকার সম্পর্ক বা বিন্যাস নির্দেশ করে।</li>
+            <li><strong>\(\Sigma\) (Singular Values):</strong> এটি একটি \(m \times n\) ডায়াগোনাল (Diagonal) ম্যাট্রিক্স। এর প্রধান কৌণিক উপাদানগুলোকে (Diagonal elements) বলা হয় <em>Singular Values</em>। এগুলো নির্দেশ করে কোন উপাদানটি কতখানি গুরুত্বপূর্ণ বা ডেটাতে কার প্রভাব কত বেশি। এগুলো সবসময় বড় থেকে ছোট ক্রমে সাজানো থাকে (\(\sigma_1 \ge \sigma_2 \ge \dots \ge 0\))।</li>
+            <li><strong>\(V^T\) (Right Singular Vectors):</strong> এটি একটি \(n \times n\) অর্থোগোনাল ম্যাট্রিক্সের ট্রান্সপোজ। এটি ডেটার কলাম (Column) বা ফীচারগুলোর মধ্যকার সম্পর্ক নির্দেশ করে।</li>
+          </ul>
+
+          <h2>🎨 জ্যামিতিক ব্যাখ্যা এবং ভিজ্যুয়ালাইজেশন (Geometric Interpretation)</h2>
+          <p>
+            জ্যামিতিক দৃষ্টিকোণ থেকে, একটি ম্যাট্রিক্স আসলে একটি স্পেস বা ভেক্টরকে অন্য একটি স্পেসে রূপান্তর (Transformation) করে। SVD আমাদের দেখায় যে এই জটিল রূপান্তরটি আসলে তিনটি সাধারণ ধাপের সমষ্টি:
+          </p>
+          
+          <ul>
+            <li><strong>\(V^T\) (Rotation):</strong> প্রথমে এটি মূল ভেক্টর বা স্পেসটিকে কিছুটা ঘুরিয়ে দেয় (Rotation)।</li>
+            <li><strong>\(\Sigma\) (Stretching/Scaling):</strong> এরপর এটি অক্ষ বরাবর ডেটাকে টেনে বড় বা ছোট করে (Scaling)। কোন অক্ষ বরাবর কতটুকু টানবে, তা ঠিক করে দেয় ওই Singular Values (\(\sigma\))।</li>
+            <li><strong>\(U\) (Rotation):</strong> সবশেষে, এটি ডেটাটিকে আবার নতুন একটি কোণে ঘুরিয়ে দেয় (Final Rotation)।</li>
+          </ul>
+          
+          <p>
+            তার মানে, যেকোনো জটিল লিনিয়ার ট্রান্সফরমেশনকে আমরা কেবল <strong>"ঘোরানো &rarr; টানা &rarr; আবার ঘোরানো"</strong>—এই তিন ধাপে ভাগ করতে পারি।
+          </p>
+
+          <h2>🛠️ বাস্তব জীবনে SVD কোথায় ব্যবহার করা হয়?</h2>
+          <h3>১. ইমেজ কম্প্রেশন (Image Compression)</h3>
+          <p>
+            একটি ছবির পিক্সেলগুলোকে আমরা একটি ম্যাট্রিক্স \(A\) হিসেবে ভাবতে পারি। SVD ব্যবহার করে যখন আমরা ছবিটিকে ভাঙি, তখন \(\Sigma\) ম্যাট্রিক্সের প্রথম দিকের কয়েকটি বড় Singular Values-ই ছবির আসল রূপ ধরে রাখে। আমরা যদি ছোট Singular Values গুলোকে (যা মূলত ছবির নয়েজ বা অপ্রয়োজনীয় ডিটেইলস) বাদ দিয়ে দিই, তবে ছবির কোয়ালিটি প্রায় এক রেখে ফাইলের সাইজ অনেক কমিয়ে ফেলা যায়।
+          </p>
+
+          <h3>২. রেকমেন্ডেশন সিস্টেম (Recommendation Systems)</h3>
+          <p>
+            Netflix বা Amazon আপনাকে কীভাবে নতুন মুভি বা প্রোডাক্ট সাজেস্ট করে? তারা ব্যবহার করে SVD। ধরুন একটা ম্যাট্রিক্সে আছে ইউজারদের নাম আর মুভির তালিকা। SVD এই বিশাল ম্যাট্রিক্সকে ভেঙে ইউজারদের পছন্দ এবং মুভির ধরন (Action, Romance, Sci-Fi) আলাদা করে ফেলে। ফলে খুব সহজেই বোঝা যায় কোন ইউজারকে কোন মুভি সাজেস্ট করা উচিত।
+          </p>
+
+          <h3>৩. ডাইমেনশনালিটি রিডাকশন (PCA)</h3>
+          <p>
+            মেশিন লার্নিংয়ে যখন হাজার হাজার ফীচার বা কলাম থাকে, তখন মডেলের কাজ করা কঠিন হয়ে পড়ে। SVD ব্যবহার করে ডেটার মূল তথ্য অক্ষুণ্ণ রেখে ফীচারের সংখ্যা কমিয়ে আনা হয় (যেমন PCA-তে ব্যাকএন্ডে SVD ব্যবহার করা হয়)।
+          </p>
+
+          <h2>💻 কোডিংয়ে প্রয়োগ (Image Compression with Python)</h2>
+          <p>
+            পাইথন (Python)-এর <code>NumPy</code> লাইব্রেরি ব্যবহার করে খুব সহজেই SVD প্রয়োগ করা যায়। নিচে একটি সাদাকালো ছবি কমপ্রেস করার কোড দেওয়া হলো:
+          </p>
+
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+
+# ১. ছবি লোড করা এবং সেটিকে Grayscale (ধূসর) রঙে রূপান্তর করা
+img = Image.open('test_cat.jpg').convert('L') 
+A = np.array(img)
+
+# ২. SVD প্রয়োগ করা (মাত্র এক লাইনে!)
+U, s, Vt = np.linalg.svd(A, full_matrices=False)
+
+# s-কে ডায়াগোনাল ম্যাট্রিক্সে রূপান্তর করা
+Sigma = np.diag(s)
+
+# ৩. বিভিন্ন সংখ্যক Singular Values (k) নিয়ে ছবি পুনর্গঠন করা
+components = [5, 20, 50, 100]
+
+plt.figure(figsize=(12, 8))
+
+for i, k in enumerate(components):
+    # প্রথম k সংখ্যক উপাদান নিয়ে ম্যাট্রিক্স গুণ করা হচ্ছে
+    compressed_A = np.dot(U[:, :k], np.dot(Sigma[:k, :k], Vt[:k, :]))
+    
+    plt.subplot(2, 2, i+1)
+    plt.imshow(compressed_A, cmap='gray')
+    plt.title(f'Singular Values Used (k) = {k}')
+    plt.axis('off')
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+          <div class="post-nav">
+            <a href="../blog.html">← Back to Blog</a>
+            <a href="../index.html">Return to Portfolio ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-panel glass">
+      <div>© 2026 Fatema Tabassum &nbsp;·&nbsp; Blog Post</div>
+      <div>Thoughtful technical writing, one post at a time</div>
+    </div>
+  </footer>
+</body>
+</html>
